@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace ClipboardEscaper
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new TrayIconContext(args));
         }
     }
 }
