@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net461</TargetFramework>
-    <ApplicationIcon />
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
     <StartupObject />
     <RepositoryUrl>https://github.com/bobend/ClipboardEscaper</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
