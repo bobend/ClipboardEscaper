@@ -17,18 +17,19 @@ namespace ClipboardEscaper
             _escapeHook.KeyPressed += Escape;           
             _unescapeHook = new KeyboardHook();
             _unescapeHook.RegisterHotKey(ModifierKeys.Control | ModifierKeys.Alt | ModifierKeys.Shift, Keys.U);
-            _unescapeHook.KeyPressed += Unescape;            
+            _unescapeHook.KeyPressed += Unescape;
+            var contextMenuStrip = new ContextMenuStrip();
+            contextMenuStrip.Items.AddRange(new[] {
+                    new ToolStripMenuItem("&Escape (Ctrl+Alt+Shift+E)", null, Escape),
+                    new ToolStripMenuItem("&Unescape (Ctrl+Alt+Shift+U)", null, Unescape),
+                    new ToolStripMenuItem("&About", null, About),
+                    new ToolStripMenuItem("E&xit", null, Exit),
+                });
 
             _trayIcon = new NotifyIcon()
             {
                 Icon = new System.Drawing.Icon(_assembly.GetManifestResourceStream("ClipboardEscaper.Icon.ico") ?? throw new InvalidOperationException()),
-                ContextMenu = new ContextMenu(new[] {
-                    new MenuItem("&Escape (Ctrl+Alt+Shift+E)", Escape),
-                    new MenuItem("&Unescape (Ctrl+Alt+Shift+U)", Unescape),
-                    new MenuItem("&About", About),
-                    new MenuItem("E&xit", Exit),
-
-                }),
+                ContextMenuStrip = contextMenuStrip,
                 Visible = true,
                 Text = "Clipboard Escaper",
             };
